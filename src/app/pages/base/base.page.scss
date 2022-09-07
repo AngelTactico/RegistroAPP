@@ -1,0 +1,21 @@
+.imgBase{
+    align-items: center;
+    background-color: rgba(171, 205, 50, 0.541);
+}
+
+ion-header {
+    --padding-top: 20px;
+    --padding-bottom: 20px;
+    --padding-end: 20px;
+    --padding-start: 20px;
+}
+
+ion-title {
+    font-size: 0.8em;
+}
+
+
+::ng-deep .mat-datepicker-toggle{
+    color: blue;
+  }
+  

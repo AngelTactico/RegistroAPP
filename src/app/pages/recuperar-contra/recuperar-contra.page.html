@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Recuperacion de Contraseña</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-padding-vertical">
+    <!--
+      Se establece un card que contendrá un título
+      y un contenido
+    -->
+    <ion-card class="ion-text-center ion-padding-vertical">
+
+      <ion-card-title class="ion-text-center">
+        <ion-label>
+          <h2>Validacion para recuperar contraseña</h2>
+        </ion-label>
+      </ion-card-title>
+
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="floating">CORREO</ion-label>
+          <!-- Usamos ngModel para indicarle al input con que propiedad del controlador va a trabajar -->
+          <ion-input type="text" [(ngModel)]="usuario.correo"></ion-input>
+        </ion-item>
+        
+        <ion-row>
+          <ion-col size="12">
+            <!-- 
+              Para usar un método de la clase controladora, hay que escribir el evento del control entre paréntesis y luego
+              indicar cual es el método a ejecutar; en este caso se trata de ingresar()
+            -->
+            <ion-button shape="block" (click)="ingresarRecu()">Ingresar</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+      
+      <ion-label>
+        <br>
+        <a (click)="goToLogin()">INICIA SESION</a>
+      </ion-label>
+    </ion-card>
+  </div>
+  
+</ion-content>

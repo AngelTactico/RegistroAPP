@@ -1,0 +1,37 @@
+{
+    "data":[
+        {
+            "Nombre": "Ana Torres Leiva",
+            "Correo": "atrorres@duocuc.cl",
+            "Contrasena": "1234", 
+            "FraseSecreta": "Nombre de su mascota",
+            "Respuesta": "gato"
+        },
+        {
+            "Nombre": "Alberto Valenzuela Nuñez",
+            "Correo": "avalenzuela@duocuc.cl",
+            "Contrasena": "qwer", 
+            "FraseSecreta": "Nombre de su amigo",
+            "Respuesta": "Juanito"
+        },    
+        {
+            "Nombre": "Carla Fuentes González",
+            "Correo": "cfuentes@duocuc.cl",
+            "Contrasena": "asdf", 
+            "FraseSecreta": "Lugar de nacimiento",
+            "Respuesta": "Valparaíso"
+        },
+        {
+            "sede" : "Alonso Ovalle",
+            "idAsignatura" : "PGY4121",
+            "seccion" : "001D",
+            "nombreAsignatura" : "Aplicaciones Móviles",
+            "nombreProfesor" : "Cristián Gómez Vega",
+            "dia" : "2022-08-09",
+            "bloqueInicio" : 7,
+            "bloqueTermino" : 9,
+            "horaInicio" : "13:00",
+            "horaFin" : "15:15"
+        }
+    ]
+}

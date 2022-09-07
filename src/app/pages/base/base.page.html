@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title #titulo class="ion-text-left ion-text">
+      <div>
+        BIENVENIDO A DUOC
+      </div>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+  <div>
+    <ion-card>
+      <div class="imgBase">
+        <img src="./assets/icon/logo2.png" />
+      </div>
+      
+      <ion-card-header>
+        <ion-card-title>Aplicacion de asistencia</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        Registro de asistencia de los estudiantes de la institucion
+      </ion-card-content>  
+
+        <ion-button expand="full" shape="round" (click)="goToLogin()">
+          A comenzar la clase
+        </ion-button>
+
+        <ion-button  expand="full" shape="round" (click)="goToRecuperarContra()">
+          ¿No recuerdas tu contraseña?
+        </ion-button>      
+    </ion-card>
+  </div>
+</ion-content>
+
+<ion-footer style="margin: 10xp ;">
+  <ion-toolbar color="primary">
+    <ion-footer >
+    </ion-footer>
+  </ion-toolbar>
+</ion-footer>
