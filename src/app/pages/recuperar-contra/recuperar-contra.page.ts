@@ -37,7 +37,7 @@ export class RecuperarContraPage implements OnInit {
     el objeto de esa clase, que usaremos para ejecutar el método "navigate".
   */
   constructor(private router: Router, private toastController: ToastController) {
-    this.usuario = new Usuario('', '', '', '', '');
+    this.usuario = new Usuario('', '', '', '', '', '', '');
     this.usuario.correo = '';
   }
 

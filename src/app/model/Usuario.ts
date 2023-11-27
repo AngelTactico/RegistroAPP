@@ -4,29 +4,36 @@ export class Usuario {
   public nombre = '';
   public preguntaSecreta = '';
   public respuestaSecreta = '';
+  public sede = '';
+  public role = '';
 
   constructor(
     correo: string,
     password: string,
     nombre: string,
     preguntaSecreta: string,
-    respuestaSecreta: string)
+    respuestaSecreta: string,
+    sede: string,
+    role: string)
   {
     this.correo = correo;
     this.password = password;
     this.nombre = nombre;
     this.preguntaSecreta = preguntaSecreta;
     this.respuestaSecreta = respuestaSecreta;
+    this.sede = sede;
+    this.role = role;
+  
   }
 
   public listaUsuariosValidos(): Usuario[] {
     const lista = [];
-    lista.push(new Usuario('atorres@duocuc.cl', '1234', 'Ana Torres Leiva'
-      , '¿Cuál es el nombre de su mascota?', 'gato'));
-    lista.push(new Usuario('avalenzuela@duocuc.cl', 'qwer', 'Alberto Valenzuela Nuñez'
-      , '¿Cuál es el nombre de tu mejor amigo?', 'juanito'));
-    lista.push(new Usuario('cfuentes@duocuc.cl', 'asdf', 'Carla Fuentes Gonzales'
-      , '¿Cuál es el lugar de nacimiento de su madre?', 'valparaiso'));
+    lista.push(new Usuario('mhernandez@duocuc.cl', '1234', 'Miguel Hernandez Medina'
+      , '¿Cuál es el nombre de su mascota?', 'gato','Viña del Mar', 'Alumno'));
+    lista.push(new Usuario('bmadrid@duocuc.cl', '4321', 'Bastian Madrid buguenno'
+      , '¿Cuál es el nombre de tu mejor amigo?', 'juanito','Viña del Mar', 'Profesor'));
+    lista.push(new Usuario('cvalenzuela@duocuc.cl', '4312', 'Catalina Valenzuela'
+      , '¿Cuál es el lugar de nacimiento de su madre?', 'valparaiso','Viña del Mar', 'Alumno'));
     return lista;
   }
 

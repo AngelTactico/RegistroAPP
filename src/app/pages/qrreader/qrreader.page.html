@@ -92,3 +92,21 @@
   <ion-button expand="full" (click)="goToback()" >Cerrar Sesion</ion-button>
   
 </ion-content>
+  <ion-footer>
+    <ion-toolbar>
+      <ion-segment value="miclase" (ionChange)="segmentChanged($event)">
+  
+        <ion-segment-button value="inicio" (click)="goToHome()">
+          <ion-icon name="home"></ion-icon>
+          <ion-label>Inicio</ion-label>
+        </ion-segment-button>
+  
+  
+        <ion-segment-button value="miclase" (click)="goToQR()">
+          <ion-icon name="school-outline"></ion-icon>
+          <ion-label>Clase</ion-label>
+        </ion-segment-button>
+  
+      </ion-segment>
+    </ion-toolbar>
+  </ion-footer>

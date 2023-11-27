@@ -1,3 +1,4 @@
+
 import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
@@ -5,12 +6,12 @@ import { Usuario } from 'src/app/model/Usuario';
 import { AnimationController } from '@ionic/angular';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  selector: 'app-home-p',
+  templateUrl: './home-p.page.html',
+  styleUrls: ['./home-p.page.scss'],
 })
 
-export class HomePage implements OnInit, AfterViewInit {
+export class HomePPage implements OnInit, AfterViewInit {
 
   @ViewChild('titulo', {read: ElementRef, static:true}) titulo: ElementRef;
 
@@ -26,11 +27,11 @@ export class HomePage implements OnInit, AfterViewInit {
     this.activeroute.queryParams.subscribe(params => {       
       if (this.router.getCurrentNavigation().extras.state) { 
 
-        this.usuario = this.router.getCurrentNavigation().extras.state.usuario;
+      this.usuario = this.router.getCurrentNavigation().extras.state.usuario;
 
       } else {
-        
-        this.router.navigate(['/login']);
+      
+       this.router.navigate(['/login']);
       }
   });
 }
@@ -67,13 +68,13 @@ this.router.navigate(['/'])
     await alert.present();
   }
 
-  goToQR(){
-    this.router.navigate(['/qrreader'])
+  goToClases(){
+    this.router.navigate(['/clases'])
   }
 
 
-  goToHome(){
-    this.router.navigate(['/home'])
+  goToHomeP(){
+    this.router.navigate(['/home-P'])
   }
 
 }

@@ -38,9 +38,10 @@ export class LoginPage implements OnInit {
     el objeto de esa clase, que usaremos para ejecutar el método "navigate".
   */
   constructor(private router: Router, private toastController: ToastController) {
-    this.usuario = new Usuario('', '', '', '', '');
+    this.usuario = new Usuario('', '', '', '', '','', '');
     this.usuario.correo = '';
     this.usuario.password = '';
+    this.usuario.role = '';
   }
 
   public ngOnInit(): void {
@@ -55,27 +56,42 @@ export class LoginPage implements OnInit {
       return;
     }
 
-    this.mostrarMensaje('¡Bienvenido!');
+    
+  
+  
+    if(this.usuario.role == 'Alumno') {
+  
+      this.mostrarMensaje('¡Bienvenido!');
+      const navigationExtras: NavigationExtras = {
+        state: {
+          usuario: this.usuario
+        }
+      };
 
-    /*
-      Se declara e instancia un objeto de la clase NavigationExtras, para poder pasarle
-      parámetros a la página home. Al objeto json "state" se le asigna un objeto con
-      nombre de clave "login" y el valor "this.login", de modo que
-      le pase la cuenta de usuario y su password a la página home.
+      this.router.navigate(['/home'], navigationExtras);
 
-      Nótese que al enviar this.login, realmente se está enviando los valores que el usuario
-      digitó en las cajas de input, pues gracias a la directiva [(ngModel)]="login.usuario",
-      el programa sabe que hay una relación directa de unión entre el valor de la propiedad
-      login.usuario y el valor del control gráfico que lleva este mismo nombre.
-    */
-    const navigationExtras: NavigationExtras = {
-      state: {
-        usuario: this.usuario
-      }
-    };
-    // Navegamos hacia el Home y enviamos la información extra
-    this.router.navigate(['/home'], navigationExtras);
-  }
+      return;
+    }
+
+    else if(this.usuario.role == 'Profesor') {
+
+      this.mostrarMensaje('¡Bienvenido!');
+      const navigationExtras: NavigationExtras = {
+        state: {
+          usuario: this.usuario
+        }
+      };
+
+      this.router.navigate(['/home-p'], navigationExtras);
+
+      return;
+    }
+
+   else {
+
+    this.mostrarMensaje('ERROR:Sin parametros de identidad, consulte mesa ayuda. XXX-XXXX-XXXX');
+
+  }}
 
   /*
     Usaremos validateModel para verificar que se cumplan las

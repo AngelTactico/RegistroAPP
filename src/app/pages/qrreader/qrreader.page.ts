@@ -1,10 +1,11 @@
 
 import { JsonPipe } from '@angular/common';
 import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 import jsQR, { QRCode } from 'jsqr';
 import { ToastController } from '@ionic/angular';
+import { Usuario } from 'src/app/model/Usuario';
 
 
 @Component({
@@ -23,6 +24,8 @@ export class QrreaderPage implements AfterViewInit {
   @ViewChild('fileinput', { static: false })
   private fileinput: ElementRef;
 
+  public usuario: Usuario;
+
   public escaneando = false;
   public datosQR = '';
   public loading: HTMLIonLoadingElement = null;
@@ -39,7 +42,8 @@ export class QrreaderPage implements AfterViewInit {
   public sede: String = '';
   public asistencia: String ='';
 
-  public constructor(private loadingController: LoadingController, private router: Router, private toastController: ToastController) {
+  public constructor(private loadingController: LoadingController, private router: Router, private toastController: ToastController, private activeroute: ActivatedRoute) {
+
 
   }
 
@@ -196,5 +200,14 @@ export class QrreaderPage implements AfterViewInit {
       });
     toast.present();
   }
+
+  goToQR(){
+    this.router.navigate(['/qrreader'])
+  }
+
+  goToHome(){
+    this.router.navigate(['/home'])
+  }
+
 
 }
