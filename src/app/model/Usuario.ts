@@ -29,11 +29,11 @@ export class Usuario {
   public listaUsuariosValidos(): Usuario[] {
     const lista = [];
     lista.push(new Usuario('mhernandez@duocuc.cl', '1234', 'Miguel Hernandez Medina'
-      , '¿Cuál es el nombre de su mascota?', 'gato','Viña del Mar', 'Alumno'));
+      , '¿Cuál es el nombre de su mascota?', 'gato','Vina del Mar', 'Alumno'));
     lista.push(new Usuario('bmadrid@duocuc.cl', '4321', 'Bastian Madrid buguenno'
-      , '¿Cuál es el nombre de tu mejor amigo?', 'juanito','Viña del Mar', 'Profesor'));
+      , '¿Cuál es el nombre de tu mejor amigo?', 'juanito','Vina del Mar', 'Profesor'));
     lista.push(new Usuario('cvalenzuela@duocuc.cl', '4312', 'Catalina Valenzuela'
-      , '¿Cuál es el lugar de nacimiento de su madre?', 'valparaiso','Viña del Mar', 'Alumno'));
+      , '¿Cuál es el lugar de nacimiento de su madre?', 'valparaiso','Vina del Mar', 'Alumno'));
     return lista;
   }
 
