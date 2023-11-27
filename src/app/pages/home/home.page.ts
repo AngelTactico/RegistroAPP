@@ -2,8 +2,6 @@ import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angula
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { Usuario } from 'src/app/model/Usuario';
-import { NivelEducacional } from '../../model/NivelEducacional';
-import { Persona } from '../../model/Persona';
 import { AnimationController } from '@ionic/angular';
 
 @Component({
@@ -18,10 +16,6 @@ export class HomePage implements OnInit, AfterViewInit {
 
 
   public usuario: Usuario;
-
-  public nivelesEducacionales: NivelEducacional[] = new NivelEducacional().getNivelesEducacionales();
-
-  public persona: Persona = new Persona();
 
    constructor(
         private activeroute: ActivatedRoute
@@ -61,29 +55,7 @@ goToLogout(){
 this.router.navigate(['/'])
 }
 
-public limpiarFormulario(): void {
-  for (const [key, value] of Object.entries(this.persona)) {
-      Object.defineProperty(this.persona, key, {value: ''});
-    }
-  }
 
-
-  public mostrarDatosPersona(): void {
-
-    if (this.persona.nombre.trim() === '' && this.persona.apellido === '') {
-      this.presentAlert('Datos personales', 'Para mostrar los datos de la persona, '
-        + 'al menos debe tener un valor para el nombre o el apellido.');
-      return;
-    }
-
-    let mensaje = '<br>Usuario: ' + this.usuario.correo;
-    mensaje += '<br>Nombre: ' + this.persona.nombre;
-    mensaje += '<br>Apellido: ' + this.persona.apellido;
-    mensaje += '<br>Educación: ' + this.persona.getTextoNivelEducacional();
-    mensaje += '<br>Nacimiento: ' + this.persona.getTextoFechaNacimiento();
-
-    this.presentAlert('Datos personales', mensaje);
-  }
 
   public async presentAlert(titulo: string, mensaje: string) {
     const alert = await this.alertController.create({

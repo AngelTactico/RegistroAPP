@@ -4,6 +4,8 @@ import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 import jsQR, { QRCode } from 'jsqr';
+import { ToastController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-qrreader',
@@ -35,8 +37,9 @@ export class QrreaderPage implements AfterViewInit {
   public nombreProfesor: String = '';
   public seccion: String = '';
   public sede: String = '';
+  public asistencia: String ='';
 
-  public constructor(private loadingController: LoadingController, private router: Router) {
+  public constructor(private loadingController: LoadingController, private router: Router, private toastController: ToastController) {
 
   }
 
@@ -55,7 +58,6 @@ export class QrreaderPage implements AfterViewInit {
     (document.getElementById('input-file') as HTMLInputElement).value = '';
 
   }
-
   public async comenzarEscaneoQR() {
     this.limpiarDatos();
     const mediaProvider: MediaProvider = await navigator.mediaDevices.getUserMedia({
@@ -105,7 +107,40 @@ export class QrreaderPage implements AfterViewInit {
     this.nombreProfesor = objetoQR.nombreProfesor;
     this.seccion = objetoQR.seccion;
     this.sede = objetoQR.sede;
+    this.asistencia = 'Ausente';
   }
+
+  public LimpiarDatosQR():void{
+    if (this.bloqueInicio == 0)
+    {this.mostrarMensaje('Primero debes estar en una clase');}
+    else {
+
+    this.bloqueInicio = 0;
+    this.bloqueTermino = 0;
+    this.dia = '';
+    this.horaFin = '';
+    this.horaInicio = '';
+    this.idAsignatura = '';
+    this.nombreAsignatura = '';
+    this.nombreProfesor = '';
+    this.seccion = '';
+    this.sede = '';
+    this.asistencia = '';
+
+    this.mostrarMensaje('Has salido de clases con exito');
+    }
+  }
+
+
+  public MarcarAsistencia():void{
+
+    if (this.bloqueInicio != 0) { 
+    this.asistencia = 'Presente';
+    this.mostrarMensaje('Asistencia marcada con exito');
+  }  else{
+    this.mostrarMensaje('Primero debes ingresar a una clase valida');
+  } }
+
 
   async verificarVideo() {
     if (this.video.nativeElement.readyState === this.video.nativeElement.HAVE_ENOUGH_DATA) {
@@ -145,4 +180,21 @@ export class QrreaderPage implements AfterViewInit {
     };
     img.src = URL.createObjectURL(file);
   }
+
+
+
+  /**
+   * Muestra un toast al usuario
+   *
+   * @param mensaje Mensaje a presentar al usuario
+   * @param duracion Duración el toast, este es opcional
+   */
+  async mostrarMensaje(mensaje: string, duracion?: number) {
+    const toast = await this.toastController.create({
+        message: mensaje,
+        duration: duracion? duracion: 2000
+      });
+    toast.present();
+  }
+
 }

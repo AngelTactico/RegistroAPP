@@ -24,9 +24,9 @@
       Detener escaneo de QR
     </ion-button>
 
-    <ion-button color="warning" (click)="limpiarDatos()" expand="block" expand="full" shape="round">
+    <ion-button color="warning" (click)="LimpiarDatosQR()" expand="block" expand="full" shape="round">
       <ion-icon  slot="start" name="trash-outline"></ion-icon>
-      Limpiar datos
+      Salir de clases
     </ion-button>
 
   <video #video [hidden]="!escaneando" width="100%"></video>
@@ -78,9 +78,16 @@
         <td>Nombre de Sede:</td>
         <td>{{sede}}</td>
       </tr>
+      <tr>
+        <td>Asistencia:</td>
+        <td>{{asistencia}}</td>
+      </tr>
     </table>
     </ion-card-content>
   </ion-card>
+  <ion-button color="danger" (click)="MarcarAsistencia()" expand="block" expand="full" shape="round">
+    Marcar Asistencia
+  </ion-button>
 
   <ion-button expand="full" (click)="goToback()" >Cerrar Sesion</ion-button>
   

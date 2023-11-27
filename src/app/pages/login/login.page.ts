@@ -45,18 +45,7 @@ export class LoginPage implements OnInit {
 
   public ngOnInit(): void {
 
-    /*
-      Las siguientes 3 líneas de código sirven para lo siguiente:
-        Caso 1: Si las comentas, la página quedará lista para ingresar el nombre de
-          usuario y la password
-        Caso 2: Si dejas las instrucciones sin comentar, entonces entrará inmediatamente
-          a la página home, usando el usuario por defecto "cgomezvega" con la
-          password "123". Lo anterior es muy útil para el caso en que ya quedó lista
-          la página de login y me interesa probar las otras páginas, de este modo se saltará
-          el login y no tendrás que estar digitando los datos todo el tiempo.
-    */
-    this.usuario.correo = 'atorres@duocuc.cl';
-    this.usuario.password = '1234';
+
     this.ingresar();
   }
 

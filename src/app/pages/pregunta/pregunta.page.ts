@@ -3,8 +3,6 @@ import { Usuario } from 'src/app/model/Usuario';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import { NivelEducacional } from '../../model/NivelEducacional';
-import { Persona } from '../../model/Persona';
 
 
 @Component({
@@ -15,11 +13,6 @@ import { Persona } from '../../model/Persona';
 export class PreguntaPage implements OnInit {
 
   public usuario: Usuario;
-
-  public nivelesEducacionales: NivelEducacional[] = new NivelEducacional().getNivelesEducacionales();
-
-  public persona: Persona = new Persona();
-
   public respuesta: string ="";
 
   /*
