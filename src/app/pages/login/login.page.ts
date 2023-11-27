@@ -6,7 +6,6 @@ import { Router, NavigationExtras } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { Usuario } from 'src/app/model/Usuario';
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -37,6 +36,7 @@ export class LoginPage implements OnInit {
     una clase y éstas parten con letra mayúscula, mientras que "router" con minúscula es
     el objeto de esa clase, que usaremos para ejecutar el método "navigate".
   */
+<<<<<<< Updated upstream
   constructor(private router: Router, private toastController: ToastController) {
     this.usuario = new Usuario('', '', '', '', '');
     this.usuario.correo = '';
@@ -115,3 +115,92 @@ export class LoginPage implements OnInit {
   }
 
 }
+=======
+
+    
+      constructor(private router: Router, private toastController: ToastController) {
+        this.usuario = new Usuario( '', '', '', '', '', '','');
+      }
+    
+      public ngOnInit(): void {
+        this.usuario.Correo = '';
+        this.usuario.Password = '';
+        this.ingresar();
+      }
+    
+      public async ingresar(): Promise<void> {
+        if (!(await this.validarUsuario(this.usuario))) {
+          return;
+        }
+      
+        // Validar roles con datos de Supabase
+        if (this.usuario.Role === 'Alumno') {
+          // Redirigir a la página de inicio de Alumnos
+          this.mostrarMensaje('¡Bienvenido!');
+          this.irAHome();
+        } else if (this.usuario.Role === 'Profesor') {
+          // Redirigir a la página de inicio de Profesores
+          this.mostrarMensaje('¡Bienvenido!');
+          this.irAHomeProfesor();
+        } else {
+          this.mostrarMensaje('ERROR: Sin parámetros de identidad. Consulte ayuda.');
+          this.irALogin();
+        }
+      }
+    
+      public async validarUsuario(usuario: Usuario): Promise<boolean> {
+        const usu = await this.usuario.buscarUsuarioValido(usuario.Correo, usuario.Password);
+      
+        if (usu) {
+          this.usuario = usu;
+          return true;
+        } else {
+          this.mostrarMensaje('Las credenciales no son correctas!');
+          return false;
+        }
+      }
+      
+    
+      async mostrarMensaje(mensaje: string, duracion?: number) {
+        const toast = await this.toastController.create({
+            message: mensaje,
+            duration: duracion? duracion: 2000
+          });
+        toast.present();
+      }
+      
+      goToRecuperarContra(){
+        this.router.navigate(['/recuperar-contra'])
+      }
+    
+    
+    
+      private irAHome() {
+        const navigationExtras: NavigationExtras = {
+          state: {
+            usuario: this.usuario
+          }
+        };
+        this.router.navigate(['/home'], navigationExtras);
+      }
+      
+      private irAHomeProfesor() {
+        const navigationExtras: NavigationExtras = {
+          state: {
+            usuario: this.usuario
+          }
+        };
+        this.router.navigate(['/home-p'], navigationExtras);
+      }
+      
+      private irALogin() {
+        const navigationExtras: NavigationExtras = {
+          state: {
+            usuario: this.usuario
+          }
+        };
+        this.router.navigate(['/login'], navigationExtras);
+      }
+    
+    }
+>>>>>>> Stashed changes

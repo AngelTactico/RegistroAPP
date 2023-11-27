@@ -37,8 +37,13 @@ export class RecuperarContraPage implements OnInit {
     el objeto de esa clase, que usaremos para ejecutar el método "navigate".
   */
   constructor(private router: Router, private toastController: ToastController) {
+<<<<<<< Updated upstream
     this.usuario = new Usuario('', '', '', '', '');
     this.usuario.correo = '';
+=======
+    this.usuario = new Usuario('', '', '', '', '', '', '');
+    this.usuario.Correo = '';
+>>>>>>> Stashed changes
   }
 
   public ngOnInit(): void {
@@ -90,10 +95,10 @@ export class RecuperarContraPage implements OnInit {
     Usaremos validateModel para verificar que se cumplan las
     validaciones de los campos del formulario
   */
-  public validarUsuarioRecu(usuario: Usuario): boolean {
+  public async validarUsuarioRecu(usuario: Usuario): Promise<boolean> {
 
-    const usu = this.usuario.buscarUsuarioValidoRecu(
-      this.usuario.correo);
+    const usu = await this.usuario.buscarUsuarioValido(
+      this.usuario.Correo, this.usuario.Password);
 
     if (usu) {
       this.usuario = usu;

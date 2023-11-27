@@ -56,9 +56,9 @@ public ngOnInit() {
   public mostrarDatosPersona(): void {
 
     // Si el usuario no ingresa al menos el nombre o el apellido, se mostrará un error
-    if (this.usuario.respuestaSecreta.trim() === this.respuesta) {
+    if (this.usuario.RespuestaSecreta.trim() === this.respuesta) {
       this.presentAlert('CORRECTO', 'TU CONTRASEÑA ES '
-        + this.usuario.password);
+        + this.usuario.Password);
       return;
     }
 

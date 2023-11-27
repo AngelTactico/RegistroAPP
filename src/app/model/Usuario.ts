@@ -1,4 +1,13 @@
+import { Injectable } from '@angular/core';
+import { supabase } from '../supabase.service'; // Importa tu configuración de Supabase
+
+
+@Injectable({
+  providedIn: 'root'
+})
+
 export class Usuario {
+<<<<<<< Updated upstream
   public correo = '';
   public password = '';
   public nombre = '';
@@ -29,79 +38,83 @@ export class Usuario {
       , '¿Cuál es el lugar de nacimiento de su madre?', 'valparaiso'));
     return lista;
   }
+=======
+  public Correo = '';
+  public Password = '';
+  public Nombre = '';
+  public PreguntaSecreta = '';
+  public RespuestaSecreta = '';
+  public Sede = '';
+  public Role = '';
 
-  public buscarUsuarioValido(correo: string, password: string): Usuario {
-    return this.listaUsuariosValidos().find(
-      usu => usu.correo === correo && usu.password === password);
+  constructor(
+    Correo: string,
+    Password: string,
+    Nombre: string,
+    PreguntaSecreta: string,
+    RespuestaSecreta: string,
+    Sede: string,
+    Role: string
+
+  ) {
+    this.Correo = Correo;
+    this.Password = Password;
+    this.Nombre = Nombre;
+    this.PreguntaSecreta = PreguntaSecreta;
+    this.RespuestaSecreta = RespuestaSecreta;
+    this.Sede = Sede;
+    this.Role = Role;
+  
   }
 
-  public validarcorreo(): string {
-    if (this.correo.trim() === '') {
-      return 'Para ingresar al sistema debe ingresar un nombre de usuario.';
+  public async obtenerUsuariosDesdeSupabase(): Promise<Usuario[]> {
+    // Realiza una consulta a Supabase para obtener los usuarios
+    const { data, error } = await supabase
+      .from('Testing')
+      .select('*');
+>>>>>>> Stashed changes
+
+    if (error) {
+      // Manejar el error, como mostrar un mensaje o realizar alguna acción
+      console.error('Error al obtener usuarios desde Supabase:', error);
+      return [];
     }
-    if (this.correo.length < 3 || this.correo.length > 8) {
-      return 'El nombre de usuario debe tener entre 3 y 8 caracteres.';
+
+    if (data) {
+      // Mapear los datos de Supabase a objetos Usuario y devolverlos
+      return data.map((user: any) => new Usuario(
+        user.Correo,
+        user.Password,
+        user.Nombre,
+        user.PreguntaSecreta,
+        user.RespuestaSecreta,
+        user.Sede,
+        user.Role
+      ));
     }
-    return '';
+
+    return [];
   }
 
-  public validarPassword(): string {
-    if (this.password.trim() === '') {
-      return 'Para entrar al sistema debe ingresar la contraseña.';
-    }
-    for(let i = 0; i < this.password.length; i++) {
-      if ('0123456789'.indexOf(this.password.charAt(i)) === -1) {
-        return 'La contraseña debe ser numérica.';
-      }
-    }
-    if (this.password.length !== 4) {
-      return 'La contraseña debe ser numérica de 4 dígitos.';
-    }
-    return '';
-  }
 
-  public validarUsuario(): string {
-    return this.validarcorreo()
-      || this.validarPassword();
+
+  public async buscarUsuarioValido(correo: string, password: string): Promise<Usuario | undefined> {
+    const usuario = await this.obtenerUsuariosDesdeSupabase();
+    
+    console.log('Usuarios obtenidos desde Supabase:', usuario);
+  
+    const usuarioEncontrado = usuario.find(usu => usu.Correo === correo && usu.Password === password);
+    if (usuarioEncontrado) {
+      console.log('Usuario válido encontrado:', usuarioEncontrado);
+      return usuarioEncontrado; // Devuelve el usuario encontrado
+    } else {
+      console.log('No se encontró un usuario válido para las credenciales proporcionadas.');
+      return undefined; // Devuelve undefined si no se encuentra el usuario
+    }
   }
 
 
 
-//----------------------------------------------------------------------------------------
 
-
-
-
-
-public buscarUsuarioValidoRecu(correo: string): Usuario {
-  return this.listaUsuariosValidos().find(
-    usu => usu.correo === correo);
-}
-
-public validarcorreoRecu(): string {
-  if (this.correo.trim() === '') {
-    return 'Para ingresar al sistema debe ingresar un nombre de usuario.';
-  }
-  if (this.correo.length < 3 || this.correo.length > 8) {
-    return 'El nombre de usuario debe tener entre 3 y 8 caracteres.';
-  }
-  return '';
-}
-
-public validarUsuarioRecu(): string {
-  return this.validarcorreo();
-}
-
-  public ValidarRecu( correo: string){
-    if (correo === 'atorres@duocuc.cl'){
-        return '¿Cuál es tu animal favorito?';
-    }
-    if (correo === 'avalenzuela@duocuc.cl'){
-        return 'a';
-    }
-    if (correo === 'cfuentes@duocuc.cl'){
-        return 'b';
-    }
-    return 'Las Credenciales NO Son correctas';
-  }
+  
 }

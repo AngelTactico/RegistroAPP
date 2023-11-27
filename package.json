@@ -29,6 +29,8 @@
     "@ionic-native/barcode-scanner": "^5.36.0",
     "@ionic-native/http": "^5.36.0",
     "@ionic/angular": "^6.1.9",
+    "@supabase/supabase-js": "^2.38.5",
+    "axios": "^1.6.2",
     "jsqr": "^1.4.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
